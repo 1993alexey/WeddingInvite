@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<div id="container"></div>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script>
+<script>
+    var config = {
+        apiKey: "AIzaSyCDgZu6ytE3oPpN-k8mVqU4AJNQApORpr4",
+        authDomain: "wedding-invitation-df176.firebaseapp.com",
+        databaseURL: "https://wedding-invitation-df176.firebaseio.com",
+        projectId: "wedding-invitation-df176",
+        storageBucket: "wedding-invitation-df176.appspot.com",
+        messagingSenderId: "321101810337"
+    };
+    firebase.initializeApp(config);
+
+    let coll = firebase.firestore().collection("guests");   
+
+    // add a guest
+    coll.add({
+        name: "Lu",
+        age: 16
+    })
+
+    let container = document.getElementById("container");
+
+
+    // get all guests
+    coll.get().then(snapshot => {
+        snapshot.docs.forEach(doc => {
+            container.innerHTML += `<p>${doc.data().name}</p>`;
+        })
+    })
+</script>
+
+</body>
+</html>

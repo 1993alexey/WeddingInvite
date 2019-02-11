@@ -6,6 +6,9 @@
     <title></title>
 </head>
 <body>
+    <input id="nameFirst">
+    <input id="nameLast">
+    <button onclick="addGuest()">Sign Up</button>
 <div id="container"></div>
 
 <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
@@ -24,19 +27,26 @@
 
     let coll = firebase.firestore().collection("guests");   
 
-    // add a guest
-    coll.add({
-        name: "Lu",
-        age: 16
-    })
+    let nameFirst = document.getElementById("nameFirst");
+    let nameLast = document.getElementById("nameLast");
+    function addGuest() {
+
+        // add a guest
+        coll.add({
+            nameFirst: nameFirst.value,
+            nameLast: nameLast.value
+        })
+    }
+
 
     let container = document.getElementById("container");
 
 
     // get all guests
     coll.get().then(snapshot => {
+        container.innerHTML = "";
         snapshot.docs.forEach(doc => {
-            container.innerHTML += `<p>${doc.data().name}</p>`;
+            container.innerHTML += `<p>First name: ${doc.data().nameFirst} Last Name: ${doc.data().nameLast}</p>`;
         })
     })
 </script>

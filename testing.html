@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input id="nameFirst">
+    <input id="nameLast">
+    <button onclick="addGuest()">Sign Up</button>
+<div id="container"></div>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-firestore.js"></script>
+<script>
+    var config = {
+        apiKey: "AIzaSyCDgZu6ytE3oPpN-k8mVqU4AJNQApORpr4",
+        authDomain: "wedding-invitation-df176.firebaseapp.com",
+        databaseURL: "https://wedding-invitation-df176.firebaseio.com",
+        projectId: "wedding-invitation-df176",
+        storageBucket: "wedding-invitation-df176.appspot.com",
+        messagingSenderId: "321101810337"
+    };
+    firebase.initializeApp(config);
+
+    let coll = firebase.firestore().collection("guests");   
+
+    let nameFirst = document.getElementById("nameFirst");
+    let nameLast = document.getElementById("nameLast");
+    function addGuest() {
+
+        // add a guest
+        coll.add({
+            nameFirst: nameFirst.value,
+            nameLast: nameLast.value
+        })
+    }
+
+
+    let container = document.getElementById("container");
+
+
+    // get all guest
+    coll.get().then(snapshot => {
+        container.innerHTML = "";
+        snapshot.docs.forEach(doc => {
+            container.innerHTML += `<p>First name: ${doc.data().nameFirst} Last Name: ${doc.data().nameLast}</p>`;
+        })
+    })
+</script>
+
+</body>
+</html>

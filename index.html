@@ -42,7 +42,7 @@
     let container = document.getElementById("container");
 
 
-    // get all guests
+    // get all guest
     coll.get().then(snapshot => {
         container.innerHTML = "";
         snapshot.docs.forEach(doc => {

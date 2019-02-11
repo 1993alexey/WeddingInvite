@@ -115,10 +115,10 @@
      */
     simplyCountdown = function (elt, args) {
         var parameters = extend({
-                year: 2015,
-                month: 6,
-                day: 28,
-                hours: 0,
+                year: 2019,
+                month: 4,
+                day: 16,
+                hours: 10,
                 minutes: 0,
                 seconds: 0,
                 words: {
@@ -130,7 +130,7 @@
                 },
                 plural: true,
                 inline: false,
-                enableUtc: true,
+                enableUtc: false,
                 onEnd: function () {
                     return;
                 },
@@ -141,6 +141,7 @@
                 wordClass: 'simply-word',
                 zeroPad: false
             }, args),
+            
             interval,
             targetDate,
             targetTmpDate,
@@ -175,6 +176,8 @@
             targetDate = targetTmpDate;
         }
 
+        console.log(targetDate);
+
         Array.prototype.forEach.call(cd, function (countdown) {
             var fullCountDown = createElements(parameters, countdown),
                 refresh;
@@ -186,6 +189,7 @@
                     secondWord;
 
                 now = new Date();
+                
                 if (parameters.enableUtc) {
                     nowUtc = new Date(now.getFullYear(), now.getMonth(), now.getDate(),
                         now.getHours(), now.getMinutes(), now.getSeconds());
@@ -194,6 +198,8 @@
                 } else {
                     secondsLeft = (targetDate - now.getTime()) / 1000;
                 }
+
+
 
                 if (secondsLeft > 0) {
                     days = parseInt(secondsLeft / 86400, 10);

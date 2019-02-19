@@ -1840,4 +1840,8 @@ form label {
   opacity: 0;
 }
 
+.activity-type option {
+  color:black;
+}
+
 /*# sourceMappingURL=style.css.map */

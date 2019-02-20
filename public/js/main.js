@@ -228,5 +228,19 @@
 		counterWayPoint();
 	});
 
-
+	scrollTo('#about', '#fh5co-couple');
+	scrollTo('#events', '#fh5co-event')
+	scrollTo('#story', '#fh5co-couple-story')
+	scrollTo('#registry', '#fh5co-started')
+	scrollTo('#wishes', '#fh5co-testimonial')
 }());
+
+function scrollTo(selector, anchor){
+	$(selector).click((e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		$("html, body").animate({ scrollTop: $(anchor).offset().top }, 500);
+	})
+}
+
+

@@ -1,0 +1,26 @@
+{
+  "name": "wedding-invitation",
+  "version": "1.0.0",
+  "description": "Wedding website of Alex Shnyrov and Yuan-Ting Lu",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wedding",
+    "alex",
+    "shnyrov",
+    "lu",
+    "yuan",
+    "ting",
+    "lu",
+    "temple",
+    "sealing",
+    "marriage"
+  ],
+  "author": "Alex Shnyrov & Yuan-Ting Lu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

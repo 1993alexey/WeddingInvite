@@ -233,6 +233,7 @@
 	scrollTo('#story', '#fh5co-couple-story')
 	scrollTo('#registry', '#fh5co-started')
 	scrollTo('#wishes', '#fh5co-testimonial')
+	scrollTo('.btn-attend', '.enroll-block')
 }());
 
 function scrollTo(selector, anchor){

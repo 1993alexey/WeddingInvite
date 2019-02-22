@@ -234,6 +234,14 @@
 	scrollTo('#registry', '#fh5co-started')
 	scrollTo('#wishes', '#fh5co-testimonial')
 	scrollTo('.btn-attend', '.enroll-block')
+
+	$(".attend-reception").click((e) => {
+		$("#activityType").val("reception");
+	})
+
+	$(".attend-sealing").click((e) => {
+		$("#activityType").val("sealing");
+	})
 }());
 
 function scrollTo(selector, anchor){

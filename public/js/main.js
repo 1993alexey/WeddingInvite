@@ -140,9 +140,54 @@
 
 	};
 
+	var owl = $('.owl-carousel-fullwidth');
+	$('#name-input, #wish-input').focus(function(e){
+		owl.trigger('stop.owl.autoplay')
+	});
+	
+
+	$("#go-to-new-wish").click((e) => {
+		owl.trigger('to.owl.carousel', 2);
+	})
+
+	owl.on('changed.owl.carousel', function(event) {
+		let numItems = event.page.count;
+		let currentItem = event.page.index;
+
+		// if no empty, exit the function
+		if (!numItems)
+			return;
+
+		if (currentItem + 1 == numItems)
+			$("#go-to-new-wish").css('visibility', 'hidden');
+		else 
+			$("#go-to-new-wish").css('visibility', 'visible');
+	})
+
+
+	let nameInput = $('#name-input');
+	let wishInput = $('#wish-input');
+
+	function addNewWish() {
+		let newWish = `
+			<div class="testimony-slide active text-center">
+				<span>${nameInput.val()}</span>
+				<blockquote>
+					<p>${wishInput.val()}</p>
+				</blockquote>
+			</div>`;
+
+		owl
+		.trigger('add.owl.carousel', [newWish, 0])
+		.trigger('refresh.owl.carousel')
+		//owl.trigger('to.owl.carousel', 0);
+	}
+
+	$("#add-wish").click(() => {
+		addNewWish();
+	})
 
 	var testimonialCarousel = function(){
-		var owl = $('.owl-carousel-fullwidth');
 		owl.owlCarousel({
 			items: 1,
 			loop: true,
@@ -152,6 +197,10 @@
 			dots: true,
 			smartSpeed: 800,
 			autoHeight: true,
+			autoplaySpeed: false,
+			autoplay: true,
+			touchDrag: false,
+			mouseDrag: false,
 		});
 	};
 
@@ -241,7 +290,7 @@
 
 	$(".attend-sealing").click((e) => {
 		$("#activityType").val("sealing");
-	})
+	})	
 }());
 
 function scrollTo(selector, anchor){

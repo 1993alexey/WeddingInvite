@@ -141,13 +141,15 @@
 	};
 
 	var owl = $('.owl-carousel-fullwidth');
-	$('#name-input, #wish-input').focus(function(e){
+
+	$('#name-input, #wish-input').on('click change focus', function(e){
 		owl.trigger('stop.owl.autoplay')
+		e.stopPropagation();
 	});
-	
 
 	$("#go-to-new-wish").click((e) => {
-		owl.trigger('to.owl.carousel', 2);
+		let numItems = $(".owl-dot").length;
+		owl.trigger('to.owl.carousel', numItems - 1);
 	})
 
 	owl.on('changed.owl.carousel', function(event) {
@@ -169,18 +171,34 @@
 	let wishInput = $('#wish-input');
 
 	function addNewWish() {
+		let name = nameInput.val();
+		let wish = wishInput.val();
+
+		if (!wish) {
+			wishInput.focus();
+			return;
+		}
+
+		if (!name)
+			name = "Unknown";
+
 		let newWish = `
+		<div class="item">
 			<div class="testimony-slide active text-center">
-				<span>${nameInput.val()}</span>
+				<span>${name}</span>
 				<blockquote>
-					<p>${wishInput.val()}</p>
+					<p>"${wish}"</p>
 				</blockquote>
-			</div>`;
+			</div>
+		</div>`;
 
 		owl
-		.trigger('add.owl.carousel', [newWish, 0])
-		.trigger('refresh.owl.carousel')
-		//owl.trigger('to.owl.carousel', 0);
+			.trigger('add.owl.carousel', [$(newWish), 0])
+			.trigger('refresh.owl.carousel');
+		owl.trigger('to.owl.carousel', 0);
+		
+		// clear the text area
+		wishInput.val("");
 	}
 
 	$("#add-wish").click(() => {
@@ -195,7 +213,7 @@
 			responsiveClass: true,
 			nav: false,
 			dots: true,
-			smartSpeed: 800,
+			smartSpeed: 500,
 			autoHeight: true,
 			autoplaySpeed: false,
 			autoplay: true,

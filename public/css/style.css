@@ -1845,3 +1845,32 @@ form label {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+@media only screen and (max-width: 400px) {
+  #fh5co-counter .event-wrap,
+  #fh5co-event .event-wrap {
+    padding: 15px;
+  }
+
+  .simply-countdown > .simply-section .simply-word {
+    font-size: 10px;
+  }
+
+  .simply-countdown > .simply-section .simply-amount {
+    font-size: 20px;
+  }
+
+  .simply-countdown > .simply-section > div {
+    height: 70px;
+    width: 70px;
+  }
+
+  .simply-countdown > .simply-section {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+#fh5co-header{
+  background-position: center !important;
+}

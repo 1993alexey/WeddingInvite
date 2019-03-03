@@ -312,11 +312,10 @@
 }());
 
 function scrollTo(selector, anchor){
-	$(selector).click((e) => {
+	$(selector).on('click', (e) => {
 		e.preventDefault();
 		e.stopPropagation();
 		$("html, body").animate({ scrollTop: $(anchor).offset().top }, 500);
 	})
 }
-
 

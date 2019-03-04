@@ -167,11 +167,11 @@
 	})
 
 
-	let nameInput = $('#name-input');
+	let wishNameInput = $('#name-input');
 	let wishInput = $('#wish-input');
 
 	function addNewWish() {
-		let name = nameInput.val();
+		let name = wishNameInput.val();
 		let wish = wishInput.val();
 
 		if (!wish) {
@@ -302,13 +302,50 @@
 	scrollTo('#wishes', '#fh5co-testimonial')
 	scrollTo('.btn-attend', '.enroll-block')
 
+	const activityType = $("#activityType");
+
 	$(".attend-reception").click((e) => {
-		$("#activityType").val("reception");
+		activityType.val("reception");
 	})
 
 	$(".attend-sealing").click((e) => {
-		$("#activityType").val("sealing");
+		activityType.val("sealing");
 	})	
+
+	// initialize variables
+	const attendSealingBtn = $(".attend-sealing");
+	const templeSeats = 20;
+	const baseAPI = "https://us-central1-wedding-invitation-df176.cloudfunctions.net/";
+	const attendeesAPI = baseAPI + "attendees";
+	const nameInput = $("#name");
+	const emailInput = $("#email");
+
+	// fetch number of attendees
+	$.get(attendeesAPI, (data) => {
+		const availableSeats = templeSeats - data.length;
+		attendSealingBtn.text("Attend Sealing (" + availableSeats + " seats left)");
+	});
+
+	// add an attendee
+	$("#add-attendee").click((e) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		// check for empty fields
+		if (!nameInput.val() || !emailInput.val())
+			return;
+			
+		// form api request
+		const req = {
+			name: nameInput.val(),
+			email: emailInput.val(),
+			type: activityType.val()
+		}
+
+		$.post(attendeesAPI, req, (res) => {
+			// response can be handled here
+		})
+	})
 }());
 
 function scrollTo(selector, anchor){

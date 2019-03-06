@@ -1,7 +1,7 @@
 ;(function () {
 	
 	'use strict';
-	
+
 	// initialize variables
 	const attendSealingBtn = $(".attend-sealing");
 	const templeSeats = 20;
@@ -358,6 +358,10 @@
 		$.post(attendeesAPI, req, (res) => {
 			// response can be handled here
 		})
+
+		// clear the fields
+		$(".attend-body").hide("slow");
+		$(".attend-instructions").text("Thank you for letting us know that you're attending. We can't wait to see you, and hope you can make it. If something comes up, and you can't make it, don't worry :) Just let us know if your planes change")
 	})
 }());
 

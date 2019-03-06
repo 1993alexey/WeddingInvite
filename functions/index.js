@@ -59,7 +59,7 @@ exports.wishes = functions.https.onRequest((req, res) => {
         if (req.method === "GET") {
             let wishes = [];
 
-            wishesRef.get()
+            wishesRef.orderBy("created_at").get()
             .then((snapshot) => {
                 snapshot.forEach((doc) => {
                     wishes.push(doc.data());
@@ -73,7 +73,8 @@ exports.wishes = functions.https.onRequest((req, res) => {
         } else if (req.method === "POST") {
             let newWish = {
                 name: req.body.name,
-                wish: req.body.wish
+                wish: req.body.wish,
+                created_at: new Date()
             };
 
             wishesRef.add(newWish)

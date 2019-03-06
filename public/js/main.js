@@ -1,6 +1,15 @@
 ;(function () {
 	
 	'use strict';
+	
+	// initialize variables
+	const attendSealingBtn = $(".attend-sealing");
+	const templeSeats = 20;
+	const baseAPI = "https://us-central1-wedding-invitation-df176.cloudfunctions.net/";
+	const attendeesAPI = baseAPI + "attendees";
+	const wishesAPI = baseAPI + "wishes";
+	const nameInput = $("#name");
+	const emailInput = $("#email");
 
 	var mobileMenuOutsideClick = function() {
 
@@ -170,10 +179,8 @@
 	let wishNameInput = $('#name-input');
 	let wishInput = $('#wish-input');
 
-	function addNewWish() {
-		let name = wishNameInput.val();
-		let wish = wishInput.val();
 
+	function addNewWish(name = wishNameInput.val(), wish = wishInput.val()) {
 		if (!wish) {
 			wishInput.focus();
 			return;
@@ -192,8 +199,7 @@
 			</div>
 		</div>`;
 
-		owl
-			.trigger('add.owl.carousel', [$(newWish), 0])
+		owl.trigger('add.owl.carousel', [$(newWish), 0])
 			.trigger('refresh.owl.carousel');
 		owl.trigger('to.owl.carousel', 0);
 		
@@ -202,7 +208,16 @@
 	}
 
 	$("#add-wish").click(() => {
+		const name = wishNameInput.val();
+		const wish = wishInput.val();
+
+		if (!name)
+		name = "Unknown";
+
 		addNewWish();
+		$.post(wishesAPI, {name, wish}, (data) => {
+			// response can be handled heare
+		})
 	})
 
 	var testimonialCarousel = function(){
@@ -312,19 +327,17 @@
 		activityType.val("sealing");
 	})	
 
-	// initialize variables
-	const attendSealingBtn = $(".attend-sealing");
-	const templeSeats = 20;
-	const baseAPI = "https://us-central1-wedding-invitation-df176.cloudfunctions.net/";
-	const attendeesAPI = baseAPI + "attendees";
-	const nameInput = $("#name");
-	const emailInput = $("#email");
-
 	// fetch number of attendees
 	$.get(attendeesAPI, (data) => {
 		const availableSeats = templeSeats - data.length;
 		attendSealingBtn.text("Attend Sealing (" + availableSeats + " seats left)");
 	});
+
+	$.get(wishesAPI, (data) => {
+		for (let wish of data) {
+			addNewWish(wish.name, wish.wish);
+		}
+	})
 
 	// add an attendee
 	$("#add-attendee").click((e) => {

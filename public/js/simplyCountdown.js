@@ -176,8 +176,6 @@
             targetDate = targetTmpDate;
         }
 
-        console.log(targetDate);
-
         Array.prototype.forEach.call(cd, function (countdown) {
             var fullCountDown = createElements(parameters, countdown),
                 refresh;

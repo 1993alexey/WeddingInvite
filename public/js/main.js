@@ -4,7 +4,7 @@
 
 	// initialize variables
 	const attendSealingBtn = $(".attend-sealing");
-	const templeSeats = 20;
+	const templeSeats = 32;
 	const baseAPI = "https://us-central1-wedding-invitation-df176.cloudfunctions.net/";
 	const attendeesAPI = baseAPI + "attendees";
 	const wishesAPI = baseAPI + "wishes";
@@ -329,7 +329,14 @@
 
 	// fetch number of attendees
 	$.get(attendeesAPI, (data) => {
-		const availableSeats = templeSeats - data.length;
+		let filtereAttendees = data.filter((attendee) => {
+			return attendee.type == 'sealing' || attendee.type == 'both';
+		})
+
+		console.log(data.length);
+		console.log(filtereAttendees);
+
+		const availableSeats = templeSeats - filtereAttendees.length;
 		attendSealingBtn.text("Attend Sealing (" + availableSeats + " seats left)");
 	});
 

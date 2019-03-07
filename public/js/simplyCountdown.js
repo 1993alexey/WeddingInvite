@@ -119,7 +119,7 @@
                 month: 3,
                 day: 30,
                 hours: 10,
-                minutes: 0,
+                minutes: 20,
                 seconds: 0,
                 words: {
                     days: 'day',

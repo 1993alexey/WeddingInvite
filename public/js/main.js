@@ -341,6 +341,10 @@
 	});
 
 	$.get(wishesAPI, (data) => {
+		let maxLength = 12;
+		if (data.length > maxLength)
+			data = data.slice(data.length - maxLength, data.length);
+
 		for (let wish of data) {
 			addNewWish(wish.name, wish.wish);
 		}

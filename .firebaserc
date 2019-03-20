@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "wedding-invitation-df176"
+    "default": "wedding-invitation-df176",
+    "tiffany": "tiffany-wedding"
   }
 }

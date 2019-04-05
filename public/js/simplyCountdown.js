@@ -113,14 +113,14 @@
      * @param elt
      * @param args (parameters)
      */
-    simplyCountdown = function (elt, args) {
+    simplyCountdown = function (elt, args, year, month, day, hour, minute, second) {
         var parameters = extend({
-                year: 2019,
-                month: 3,
-                day: 30,
-                hours: 10,
-                minutes: 20,
-                seconds: 0,
+                year: year,
+                month: month,
+                day: day,
+                hours: hour,
+                minutes: minute,
+                seconds: second,
                 words: {
                     days: 'day',
                     hours: 'hour',

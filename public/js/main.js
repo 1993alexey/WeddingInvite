@@ -350,31 +350,44 @@
 		}
 	})
 
-	// add an attendee
-	$("#add-attendee").click((e) => {
+	$('.btn-block').click(e => {
 		e.preventDefault();
 		e.stopPropagation();
-
-		// check for empty fields
-		if (!nameInput.val() || !emailInput.val())
-			return;
-			
-		// form api request
-		const req = {
-			name: nameInput.val(),
-			email: emailInput.val(),
-			type: activityType.val()
-		}
-
-		$.post(attendeesAPI, req, (res) => {
-			// response can be handled here
-		})
-
-		// clear the fields
-		$(".attend-body").hide("slow");
-		$(".attend-instructions").text("Thank you for letting us know that you're attending. We can't wait to see you, and hope you can make it. If something comes up, and you can't make it, don't worry :) Just let us know if your planes change")
+		goToUrl('https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.surveycake.com%2Fs%2F0l9nZ%3Ffbclid%3DIwAR1odPesUxE5_epRMQtoMVr8wA2AERJ7ON7SmNKV-BZtjh-d8V_h-NlRfV0&h=AT2gmfzbNgUmRQUOqKWjOhL1DCQa5mEF3N8SeUPmW_HMnchYr16Mdwkiyaa7LecKM00xUD06WHGu8qtryn7P8_Q43fzcqTgaaw5fZFVvk-7BovlnsmE97S_A4uvPOKHKG5lSgQ');
 	})
+
+	// add an attendee
+	// $("#add-attendee").click((e) => {
+	// 	e.preventDefault();
+	// 	e.stopPropagation();
+
+
+
+		// // check for empty fields
+		// if (!nameInput.val() || !emailInput.val())
+		// 	return;
+			
+		// // form api request
+		// const req = {
+		// 	name: nameInput.val(),
+		// 	email: emailInput.val(),
+		// 	type: activityType.val()
+		// }
+
+		// $.post(attendeesAPI, req, (res) => {
+		// 	// response can be handled here
+		// })
+
+		// // clear the fields
+		// $(".attend-body").hide("slow");
+		// $(".attend-instructions").text("Thank you for letting us know that you're attending. We can't wait to see you, and hope you can make it. If something comes up, and you can't make it, don't worry :) Just let us know if your planes change")
+	// })
+
 }());
+function goToUrl(url) {
+	var win = window.open(url, '_blank');
+	win.focus();
+  }
 
 function scrollTo(selector, anchor){
 	$(selector).on('click', (e) => {

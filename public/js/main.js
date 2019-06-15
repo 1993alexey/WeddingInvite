@@ -353,7 +353,7 @@
 	$('.btn-block').click(e => {
 		e.preventDefault();
 		e.stopPropagation();
-		goToUrl('https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.surveycake.com%2Fs%2F0l9nZ%3Ffbclid%3DIwAR1odPesUxE5_epRMQtoMVr8wA2AERJ7ON7SmNKV-BZtjh-d8V_h-NlRfV0&h=AT2gmfzbNgUmRQUOqKWjOhL1DCQa5mEF3N8SeUPmW_HMnchYr16Mdwkiyaa7LecKM00xUD06WHGu8qtryn7P8_Q43fzcqTgaaw5fZFVvk-7BovlnsmE97S_A4uvPOKHKG5lSgQ');
+		goToUrl('https://www.surveycake.com/s/YY6w7?fbclid=IwAR2pZnK-0sLWN6OO-3wZeRSTbjehkcAnOJJm74U0pZ0gbNQ-UPUx1L9vb8s');
 	})
 
 	// add an attendee
